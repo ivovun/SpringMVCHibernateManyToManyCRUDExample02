@@ -84,11 +84,5 @@ public abstract class AbstractDao<PK extends Serializable, T> {
 //		return getSession().createCriteria(persistentClass);
 //	}
 
-	public EntityManager getEntityManager() {
-		return entityManager;
-	}
 
-	public Class<T> getPersistentClass() {
-		return persistentClass;
-	}
 }
