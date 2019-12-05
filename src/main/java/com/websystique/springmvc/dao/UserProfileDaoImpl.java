@@ -18,17 +18,25 @@ public class UserProfileDaoImpl extends AbstractDao<Long, UserProfile>implements
 		return getByKey(id);
 	}
 
+//	public UserProfile findByType2(String type) {
+//		Criteria crit = createEntityCriteria();
+//		crit.add(Restrictions.eq("type", type));
+//		return (UserProfile) crit.uniqueResult();
+//	}
+
 	public UserProfile findByType(String type) {
-		Criteria crit = createEntityCriteria();
-		crit.add(Restrictions.eq("type", type));
-		return (UserProfile) crit.uniqueResult();
+		return findByFieldName("type", type);
 	}
-	
-	@SuppressWarnings("unchecked")
-	public List<UserProfile> findAll(){
-		Criteria crit = createEntityCriteria();
-		crit.addOrder(Order.asc("type"));
-		return (List<UserProfile>)crit.list();
-	}
-	
+
+//	@SuppressWarnings("unchecked")
+//	public List<UserProfile> findAll2(){
+//		Criteria crit = createEntityCriteria();
+//		crit.addOrder(Order.asc("type"));
+//		return (List<UserProfile>)crit.list();
+//	}
+
+//	public List<UserProfile> findAll(){
+//		return (List<UserProfile>) getEntityManager().createQuery("from " + getPersistentClass().getName()).getResultList();;
+//	}
+
 }

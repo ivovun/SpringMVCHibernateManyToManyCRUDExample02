@@ -27,41 +27,58 @@ public class UserDaoImpl extends AbstractDao<Long, User> implements UserDao {
 		return user;
 	}
 
+//	public User findBySSO2(String sso) {
+//		logger.info("SSO : {}", sso);
+//		Criteria crit = createEntityCriteria();
+//		crit.add(Restrictions.eq("ssoId", sso));
+//		User user = (User)crit.uniqueResult();
+//		if(user!=null){
+//			Hibernate.initialize(user.getUserProfiles());
+//		}
+//		return user;
+//	}
+
 	public User findBySSO(String sso) {
-		logger.info("SSO : {}", sso);
-		Criteria crit = createEntityCriteria();
-		crit.add(Restrictions.eq("ssoId", sso));
-		User user = (User)crit.uniqueResult();
-		if(user!=null){
-			Hibernate.initialize(user.getUserProfiles());
-		}
-		return user;
+		return findByFieldName("ssoId", sso);
 	}
 
-	@SuppressWarnings("unchecked")
+//	@SuppressWarnings("unchecked")
+//	public List<User> findAllUsers2() {
+//		Criteria criteria = createEntityCriteria().addOrder(Order.asc("firstName"));
+//		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);//To avoid duplicates.
+//		List<User> users = (List<User>) criteria.list();
+//
+//		// No need to fetch userProfiles since we are not showing them on list page. Let them lazy load.
+//		// Uncomment below lines for eagerly fetching of userProfiles if you want.
+//		/*
+//		for(User user : users){
+//			Hibernate.initialize(user.getUserProfiles());
+//		}*/
+//		return users;
+//	}
+
 	public List<User> findAllUsers() {
-		Criteria criteria = createEntityCriteria().addOrder(Order.asc("firstName"));
-		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);//To avoid duplicates.
-		List<User> users = (List<User>) criteria.list();
-		
-		// No need to fetch userProfiles since we are not showing them on list page. Let them lazy load. 
-		// Uncomment below lines for eagerly fetching of userProfiles if you want.
-		/*
-		for(User user : users){
-			Hibernate.initialize(user.getUserProfiles());
-		}*/
-		return users;
+		return findAll();
 	}
+
+//	public void save2(User user) {
+//		persist(user);
+//	}
 
 	public void save(User user) {
-		persist(user);
+		update(user);
 	}
 
+
+//	public void deleteBySSO2(String sso) {
+//		Criteria crit = createEntityCriteria();
+//		crit.add(Restrictions.eq("ssoId", sso));
+//		User user = (User)crit.uniqueResult();
+//		delete(user);
+//	}
+
 	public void deleteBySSO(String sso) {
-		Criteria crit = createEntityCriteria();
-		crit.add(Restrictions.eq("ssoId", sso));
-		User user = (User)crit.uniqueResult();
-		delete(user);
+		delete(findBySSO(sso));
 	}
 
 }

@@ -10,10 +10,15 @@
 	<name>SpringMVCHibernateWithSpringSecurityExample02</name>
 
   	<properties>
-		<springframework.version>4.2.5.RELEASE</springframework.version>
-		<springsecurity.version>4.0.4.RELEASE</springsecurity.version>
-		<hibernate.version>4.3.11.Final</hibernate.version>
+<!--		<springframework.version>4.2.5.RELEASE</springframework.version>-->
+		<springframework.version>5.1.0.RELEASE</springframework.version>
+<!--		<springsecurity.version>4.0.4.RELEASE</springsecurity.version>-->
+		<springsecurity.version>5.1.0.RELEASE</springsecurity.version>
+<!--		<hibernate.version>4.3.11.Final</hibernate.version>-->
+		<hibernate.version>5.3.5.Final</hibernate.version>
 		<mysql.connector.version>5.1.47</mysql.connector.version>
+<!--		<mysql.connector.version>8.0.13</mysql.connector.version>-->
+
 	</properties>
 
 	<dependencies>

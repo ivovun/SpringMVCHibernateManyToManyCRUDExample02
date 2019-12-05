@@ -33,13 +33,27 @@ public class HibernateTokenRepositoryImpl extends AbstractDao<String, Persistent
 
 	}
 
+//	@Override
+//	public PersistentRememberMeToken getTokenForSeries2(String seriesId) {
+//		logger.info("Fetch Token if any for seriesId : {}", seriesId);
+//		try {
+//			Criteria crit = createEntityCriteria();
+//			crit.add(Restrictions.eq("series", seriesId));
+//			PersistentLogin persistentLogin = (PersistentLogin) crit.uniqueResult();
+//
+//			return new PersistentRememberMeToken(persistentLogin.getUsername(), persistentLogin.getSeries(),
+//					persistentLogin.getToken(), persistentLogin.getLast_used());
+//		} catch (Exception e) {
+//			logger.info("Token not found...");
+//			return null;
+//		}
+//	}
+
 	@Override
 	public PersistentRememberMeToken getTokenForSeries(String seriesId) {
 		logger.info("Fetch Token if any for seriesId : {}", seriesId);
 		try {
-			Criteria crit = createEntityCriteria();
-			crit.add(Restrictions.eq("series", seriesId));
-			PersistentLogin persistentLogin = (PersistentLogin) crit.uniqueResult();
+			PersistentLogin persistentLogin = findByFieldName("series", seriesId);
 
 			return new PersistentRememberMeToken(persistentLogin.getUsername(), persistentLogin.getSeries(),
 					persistentLogin.getToken(), persistentLogin.getLast_used());
@@ -49,17 +63,26 @@ public class HibernateTokenRepositoryImpl extends AbstractDao<String, Persistent
 		}
 	}
 
+//	@Override
+//	public void removeUserTokens2(String username) {
+//		logger.info("Removing Token if any for user : {}", username);
+//		Criteria crit = createEntityCriteria();
+//		crit.add(Restrictions.eq("username", username));
+//		PersistentLogin persistentLogin = (PersistentLogin) crit.uniqueResult();
+//		if (persistentLogin != null) {
+//			logger.info("rememberMe was selected");
+//			delete(persistentLogin);
+//		}
+//	}
+
 	@Override
 	public void removeUserTokens(String username) {
 		logger.info("Removing Token if any for user : {}", username);
-		Criteria crit = createEntityCriteria();
-		crit.add(Restrictions.eq("username", username));
-		PersistentLogin persistentLogin = (PersistentLogin) crit.uniqueResult();
+		PersistentLogin persistentLogin = findByFieldName("username", username);
 		if (persistentLogin != null) {
 			logger.info("rememberMe was selected");
 			delete(persistentLogin);
 		}
-
 	}
 
 	@Override
