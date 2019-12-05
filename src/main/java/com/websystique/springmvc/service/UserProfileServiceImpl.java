@@ -17,7 +17,7 @@ public class UserProfileServiceImpl implements UserProfileService{
 	@Autowired
 	UserProfileDao dao;
 	
-	public UserProfile findById(int id) {
+	public UserProfile findById(long id) {
 		return dao.findById(id);
 	}
 

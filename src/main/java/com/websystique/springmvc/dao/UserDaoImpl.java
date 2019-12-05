@@ -15,11 +15,11 @@ import com.websystique.springmvc.model.User;
 
 
 @Repository("userDao")
-public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
+public class UserDaoImpl extends AbstractDao<Long, User> implements UserDao {
 
 	static final Logger logger = LoggerFactory.getLogger(UserDaoImpl.class);
 	
-	public User findById(int id) {
+	public User findById(long id) {
 		User user = getByKey(id);
 		if(user!=null){
 			Hibernate.initialize(user.getUserProfiles());

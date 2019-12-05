@@ -12,9 +12,9 @@ import com.websystique.springmvc.model.UserProfile;
 
 
 @Repository("userProfileDao")
-public class UserProfileDaoImpl extends AbstractDao<Integer, UserProfile>implements UserProfileDao{
+public class UserProfileDaoImpl extends AbstractDao<Long, UserProfile>implements UserProfileDao{
 
-	public UserProfile findById(int id) {
+	public UserProfile findById(long id) {
 		return getByKey(id);
 	}
 

@@ -7,7 +7,7 @@ import com.websystique.springmvc.model.UserProfile;
 
 public interface UserProfileService {
 
-	UserProfile findById(int id);
+	UserProfile findById(long id);
 
 	UserProfile findByType(String type);
 	
