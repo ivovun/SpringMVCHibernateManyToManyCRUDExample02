@@ -56,12 +56,20 @@ public class HibernateConfiguration {
         return properties;
     }
     
-	@Bean
-    @Autowired
-    public HibernateTransactionManager transactionManager(SessionFactory s) {
-       HibernateTransactionManager txManager = new HibernateTransactionManager();
-       txManager.setSessionFactory(s);
-       return txManager;
+//	@Bean
+//    @Autowired
+//    public HibernateTransactionManager transactionManager(SessionFactory s) {
+//       HibernateTransactionManager txManager = new HibernateTransactionManager();
+//       txManager.setSessionFactory(s);
+//       return txManager;
+//    }
+
+    @Bean
+    public HibernateTransactionManager getTransactionManager() {
+        HibernateTransactionManager transactionManager = new HibernateTransactionManager();
+        transactionManager.setSessionFactory(sessionFactory().getObject());
+        return transactionManager;
     }
+
 }
 

@@ -29,8 +29,6 @@ import com.websystique.springmvc.model.UserProfile;
 import com.websystique.springmvc.service.UserProfileService;
 import com.websystique.springmvc.service.UserService;
 
-
-
 @Controller
 @RequestMapping("/")
 @SessionAttributes("roles")
@@ -50,8 +48,7 @@ public class AppController {
 	
 	@Autowired
 	AuthenticationTrustResolver authenticationTrustResolver;
-	
-	
+
 	/**
 	 * This method will list all existing users.
 	 */

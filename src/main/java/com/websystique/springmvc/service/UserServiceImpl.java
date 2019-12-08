@@ -14,7 +14,6 @@ import com.websystique.springmvc.model.User;
 @Service("userService")
 @Transactional
 public class UserServiceImpl implements UserService{
-
 	@Autowired
 	private UserDao dao;
 
