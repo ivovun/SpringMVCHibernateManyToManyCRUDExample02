@@ -30,20 +30,6 @@ public class AppConfig implements WebMvcConfigurer {
 	@Autowired
 	RoleToUserProfileConverter roleToUserProfileConverter;
 
-
-	/**
-     * Configure ViewResolvers to deliver preferred views.
-     */
-//	@Override
-//	public void configureViewResolvers(ViewResolverRegistry registry) {
-//
-//		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-//		viewResolver.setViewClass(JstlView.class);
-//		viewResolver.setPrefix("/WEB-INF/views/");
-//		viewResolver.setSuffix(".jsp");
-//		registry.viewResolver(viewResolver);
-//	}
-
 	@Bean
 	public InternalResourceViewResolver resolver() {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();

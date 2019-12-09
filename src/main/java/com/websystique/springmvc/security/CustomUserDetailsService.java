@@ -21,7 +21,6 @@ import com.websystique.springmvc.service.UserService;
 
 @Service("customUserDetailsService")
 public class CustomUserDetailsService implements UserDetailsService{
-
 	static final Logger logger = LoggerFactory.getLogger(CustomUserDetailsService.class);
 	
 	@Autowired
@@ -40,7 +39,6 @@ public class CustomUserDetailsService implements UserDetailsService{
 				 true, true, true, true, getGrantedAuthorities(user));
 	}
 
-	
 	private List<GrantedAuthority> getGrantedAuthorities(User user){
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 		
@@ -51,5 +49,4 @@ public class CustomUserDetailsService implements UserDetailsService{
 		logger.info("authorities : {}", authorities);
 		return authorities;
 	}
-	
 }

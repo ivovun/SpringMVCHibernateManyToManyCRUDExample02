@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.websystique.springmvc.model.User;
 
-
 public interface UserService {
 	
 	User findById(long id);
@@ -20,5 +19,4 @@ public interface UserService {
 	List<User> findAllUsers(); 
 	
 	boolean isUserSSOUnique(Long id, String sso);
-
 }

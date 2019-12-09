@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.websystique.springmvc.model.UserProfile;
 
-
 public interface UserProfileService {
 
 	UserProfile findById(long id);
@@ -12,5 +11,4 @@ public interface UserProfileService {
 	UserProfile findByType(String type);
 	
 	List<UserProfile> findAll();
-	
 }

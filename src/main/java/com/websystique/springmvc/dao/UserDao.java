@@ -4,9 +4,7 @@ import java.util.List;
 
 import com.websystique.springmvc.model.User;
 
-
 public interface UserDao {
-
 	User findById(long id);
 	
 	User findBySSO(String sso);

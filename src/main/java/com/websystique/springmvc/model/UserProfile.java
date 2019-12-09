@@ -12,7 +12,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name="USER_PROFILE")
 public class UserProfile implements Serializable{
-
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 
@@ -70,5 +69,4 @@ public class UserProfile implements Serializable{
 	public String toString() {
 		return "UserProfile [id=" + id + ", type=" + type + "]";
 	}
-
 }

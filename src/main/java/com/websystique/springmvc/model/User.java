@@ -20,7 +20,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 @Table(name="APP_USER")
 public class User implements Serializable{
-
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 
@@ -49,7 +48,7 @@ public class User implements Serializable{
 	@JoinTable(name = "APP_USER_USER_PROFILE", 
              joinColumns = { @JoinColumn(name = "USER_ID") }, 
              inverseJoinColumns = { @JoinColumn(name = "USER_PROFILE_ID") })
-	private Set<UserProfile> userProfiles = new HashSet<UserProfile>();
+	private Set<UserProfile> userProfiles = new HashSet<>();
 
 	public Long getId() {
 		return id;

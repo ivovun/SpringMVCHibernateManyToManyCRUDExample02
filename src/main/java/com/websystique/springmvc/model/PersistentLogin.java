@@ -13,7 +13,6 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name="PERSISTENT_LOGINS")
 public class PersistentLogin implements Serializable{
-
 	@Id
 	private String series;
 
@@ -57,6 +56,4 @@ public class PersistentLogin implements Serializable{
 	public void setLast_used(Date last_used) {
 		this.last_used = last_used;
 	}
-	
-	
 }

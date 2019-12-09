@@ -13,8 +13,6 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
-//import org.springframework.orm.hibernate4.HibernateTransactionManager;
-//import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -55,14 +53,6 @@ public class HibernateConfiguration {
 
         return properties;
     }
-    
-//	@Bean
-//    @Autowired
-//    public HibernateTransactionManager transactionManager(SessionFactory s) {
-//       HibernateTransactionManager txManager = new HibernateTransactionManager();
-//       txManager.setSessionFactory(s);
-//       return txManager;
-//    }
 
     @Bean
     public HibernateTransactionManager getTransactionManager() {
