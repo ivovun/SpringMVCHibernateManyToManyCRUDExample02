@@ -71,7 +71,4 @@ public class UserProfile implements Serializable{
 		return "UserProfile [id=" + id + ", type=" + type + "]";
 	}
 
-
-
-
 }

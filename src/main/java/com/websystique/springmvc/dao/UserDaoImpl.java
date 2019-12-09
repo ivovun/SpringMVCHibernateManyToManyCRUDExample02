@@ -66,7 +66,12 @@ public class UserDaoImpl extends AbstractDao<Long, User> implements UserDao {
 //	}
 
 	public void save(User user) {
-		update(user);
+		if (user.getId() == null) {
+			persist(user);
+		} else {
+			update(user);
+		}
+
 	}
 
 

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 public abstract class AbstractDao<PK extends Serializable, T> {
@@ -70,8 +71,13 @@ public abstract class AbstractDao<PK extends Serializable, T> {
 	}
 
 	public T findByFieldName(String name, String value) {
-		return (T) entityManager.createQuery("SELECT e FROM " + persistentClass.getName()
-				+" e WHERE e." + name + " = :name").setParameter("name", value).getSingleResult();
+		try {
+			return (T) entityManager.createQuery("SELECT e FROM " + persistentClass.getName()
+					+" e WHERE e." + name + " = :name").setParameter("name", value).getSingleResult();
+
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 
