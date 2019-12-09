@@ -33,21 +33,25 @@ import com.websystique.springmvc.service.UserService;
 @RequestMapping("/")
 @SessionAttributes("roles")
 public class AppController {
-
-	@Autowired
 	UserService userService;
 	
-	@Autowired
 	UserProfileService userProfileService;
 	
-	@Autowired
 	MessageSource messageSource;
 
-	@Autowired
 	PersistentTokenBasedRememberMeServices persistentTokenBasedRememberMeServices;
 	
-	@Autowired
 	AuthenticationTrustResolver authenticationTrustResolver;
+
+	public AppController(UserService userService, UserProfileService userProfileService,
+						 MessageSource messageSource, PersistentTokenBasedRememberMeServices persistentTokenBasedRememberMeServices,
+						 AuthenticationTrustResolver authenticationTrustResolver) {
+		this.userService = userService;
+		this.userProfileService = userProfileService;
+		this.messageSource = messageSource;
+		this.persistentTokenBasedRememberMeServices = persistentTokenBasedRememberMeServices;
+		this.authenticationTrustResolver = authenticationTrustResolver;
+	}
 
 	/**
 	 * This method will list all existing users.
@@ -107,7 +111,6 @@ public class AppController {
 		return "registrationsuccess";
 	}
 
-
 	/**
 	 * This method will provide the medium to update an existing user.
 	 */
@@ -132,7 +135,6 @@ public class AppController {
 			return "registration";
 		}
 
-
 		userService.updateUser(user);
 
 		model.addAttribute("success", "User " + user.getFirstName() + " "+ user.getLastName() + " updated successfully");
@@ -140,7 +142,6 @@ public class AppController {
 		return "registrationsuccess";
 	}
 
-	
 	/**
 	 * This method will delete an user by it's SSOID value.
 	 */
@@ -218,6 +219,4 @@ public class AppController {
 	    final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 	    return authenticationTrustResolver.isAnonymous(authentication);
 	}
-
-
 }
