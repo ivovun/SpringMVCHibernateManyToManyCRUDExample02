@@ -2,7 +2,6 @@ package com.websystique.springmvc.service;
 
 import java.util.List;
 
-import com.websystique.springmvc.model.UserProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -11,8 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.websystique.springmvc.dao.UserDao;
 import com.websystique.springmvc.model.User;
 
-
-//@Service("userService")
 @Service
 @Transactional
 public class UserServiceImpl implements UserService{
@@ -35,8 +32,7 @@ public class UserServiceImpl implements UserService{
 	}
 
 	public User findBySSO(String sso) {
-		User user = dao.findBySSO(sso);
-		return user;
+		return dao.findBySSO(sso);
 	}
 
 	public void saveUser(User user) {
@@ -63,7 +59,6 @@ public class UserServiceImpl implements UserService{
 		}
 	}
 
-	
 	public void deleteUserBySSO(String sso) {
 		dao.deleteBySSO(sso);
 	}
@@ -74,7 +69,6 @@ public class UserServiceImpl implements UserService{
 
 	public boolean isUserSSOUnique(Long id, String sso) {
 		User user = findBySSO(sso);
-		return ( user == null || ((id != null) && (user.getId() == id)));
+		return ( user == null || ((id != null) && (user.getId().equals(id))));
 	}
-	
 }

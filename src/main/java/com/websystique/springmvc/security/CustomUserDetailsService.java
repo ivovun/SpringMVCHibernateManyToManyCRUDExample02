@@ -18,13 +18,15 @@ import com.websystique.springmvc.model.User;
 import com.websystique.springmvc.model.UserProfile;
 import com.websystique.springmvc.service.UserService;
 
-
-@Service("customUserDetailsService")
+@Service
 public class CustomUserDetailsService implements UserDetailsService{
-	static final Logger logger = LoggerFactory.getLogger(CustomUserDetailsService.class);
-	
-	@Autowired
+	private static final Logger logger = LoggerFactory.getLogger(CustomUserDetailsService.class);
+
 	private UserService userService;
+
+	public CustomUserDetailsService(UserService userService) {
+		this.userService = userService;
+	}
 	
 	@Transactional(readOnly=true)
 	public UserDetails loadUserByUsername(String ssoId)
@@ -40,7 +42,7 @@ public class CustomUserDetailsService implements UserDetailsService{
 	}
 
 	private List<GrantedAuthority> getGrantedAuthorities(User user){
-		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+		List<GrantedAuthority> authorities = new ArrayList<>();
 		
 		for(UserProfile userProfile : user.getUserProfiles()){
 			logger.info("UserProfile : {}", userProfile);

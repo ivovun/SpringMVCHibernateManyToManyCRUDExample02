@@ -1,7 +1,6 @@
 package com.websystique.springmvc.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationTrustResolver;
@@ -20,13 +19,14 @@ import org.springframework.security.web.authentication.rememberme.PersistentToke
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+	private UserDetailsService userDetailsService;
 
-	@Autowired
-	@Qualifier("customUserDetailsService")
-	UserDetailsService userDetailsService;
+	private PersistentTokenRepository tokenRepository;
 
-	@Autowired
-	PersistentTokenRepository tokenRepository;
+	public SecurityConfiguration(UserDetailsService userDetailsService, PersistentTokenRepository tokenRepository) {
+		this.userDetailsService = userDetailsService;
+		this.tokenRepository = tokenRepository;
+	}
 
 	@Autowired
 	public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
@@ -60,9 +60,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Bean
 	public PersistentTokenBasedRememberMeServices getPersistentTokenBasedRememberMeServices() {
-		PersistentTokenBasedRememberMeServices tokenBasedservice = new PersistentTokenBasedRememberMeServices(
+		return new PersistentTokenBasedRememberMeServices(
 				"remember-me", userDetailsService, tokenRepository);
-		return tokenBasedservice;
 	}
 
 	@Bean

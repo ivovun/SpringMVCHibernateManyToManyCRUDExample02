@@ -14,18 +14,21 @@ import com.websystique.springmvc.service.UserProfileService;
  */
 @Component
 public class RoleToUserProfileConverter implements Converter<Object, UserProfile>{
-
-	static final Logger logger = LoggerFactory.getLogger(RoleToUserProfileConverter.class);
+	private static final Logger logger = LoggerFactory.getLogger(RoleToUserProfileConverter.class);
 	
-	@Autowired
-	UserProfileService userProfileService;
+//	@Autowired
+	private UserProfileService userProfileService;
+
+	public RoleToUserProfileConverter(UserProfileService userProfileService) {
+		this.userProfileService = userProfileService;
+	}
 
 	/**
 	 * Gets UserProfile by Id
 	 * @see org.springframework.core.convert.converter.Converter#convert(java.lang.Object)
 	 */
 	public UserProfile convert(Object element) {
-		Long id = Long.parseLong((String)element);
+		long id = Long.parseLong((String)element);
 		UserProfile profile= userProfileService.findById(id);
 		logger.info("Profile : {}",profile);
 		return profile;
