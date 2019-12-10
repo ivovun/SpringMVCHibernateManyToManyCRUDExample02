@@ -5,7 +5,8 @@ import org.springframework.stereotype.Repository;
 import com.websystique.springmvc.model.UserProfile;
 
 
-@Repository("userProfileDao")
+//@Repository("userProfileDao")
+@Repository
 public class UserProfileDaoImpl extends AbstractDao<Long, UserProfile>implements UserProfileDao{
 
 	public UserProfile findById(long id) {

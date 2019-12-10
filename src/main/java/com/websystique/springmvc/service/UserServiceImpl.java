@@ -2,6 +2,7 @@ package com.websystique.springmvc.service;
 
 import java.util.List;
 
+import com.websystique.springmvc.model.UserProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -11,15 +12,24 @@ import com.websystique.springmvc.dao.UserDao;
 import com.websystique.springmvc.model.User;
 
 
-@Service("userService")
+//@Service("userService")
+@Service
 @Transactional
 public class UserServiceImpl implements UserService{
-	@Autowired
 	private UserDao dao;
 
-	@Autowired
     private PasswordEncoder passwordEncoder;
-	
+
+	@Autowired
+	public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
+		this.passwordEncoder = passwordEncoder;
+	}
+
+	@Autowired
+	public void setDao(UserDao dao) {
+		this.dao = dao;
+	}
+
 	public User findById(long id) {
 		return dao.findById(id);
 	}

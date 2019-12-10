@@ -13,9 +13,12 @@ import com.websystique.springmvc.model.UserProfile;
 @Service("userProfileService")
 @Transactional
 public class UserProfileServiceImpl implements UserProfileService{
-	
-	@Autowired
+//	@Autowired
 	UserProfileDao dao;
+
+	public UserProfileServiceImpl(UserProfileDao dao) {
+		this.dao = dao;
+	}
 	
 	public UserProfile findById(long id) {
 		return dao.findById(id);
